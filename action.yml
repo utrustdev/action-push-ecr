@@ -1,0 +1,21 @@
+name: Build and Push Docker image to AWS ECR
+
+inputs:
+  repo:
+    description: 'Repository name'
+    required: true
+  tag:
+    description: 'Image tag'
+    required: true
+  dockerfile:
+    description: 'Dockerfile to use'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.repo }}
+    - ${{ inputs.tag }}
+    - ${{ inputs.dockerfile }}
+
