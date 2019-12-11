@@ -10,6 +10,9 @@ inputs:
   dockerfile:
     description: 'Dockerfile to use'
     required: true
+  extra-build-args:
+    description: 'Extra arguments passed to `docker build`'
+    required: false
 
 runs:
   using: 'docker'
@@ -18,4 +21,4 @@ runs:
     - ${{ inputs.repo }}
     - ${{ inputs.tag }}
     - ${{ inputs.dockerfile }}
-
+    - "${{ inputs.extra-build-args}}"
