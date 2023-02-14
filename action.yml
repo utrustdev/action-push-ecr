@@ -25,5 +25,5 @@ runs:
       env:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
-        ./push_to_ecr.sh $REGISTRY ${{ inputs.repo }} ${{ inputs.tag }} ${{ inputs.dockerfile }} "${{ inputs.extra-build-args }}"
+        ${{ github.action_path }}/push_to_ecr.sh $REGISTRY ${{ inputs.repo }} ${{ inputs.tag }} ${{ inputs.dockerfile }} "${{ inputs.extra-build-args }}"
       shell: bash
