@@ -9,13 +9,15 @@ to skipping redundant builds
 jobs:
   deploy:
     steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: aws-region-1
+
       - name: Build and push to ECR
-        uses: utrustdev/action-push-ecr@v0.1.0
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: eu-central-1
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+        uses: utrustdev/action-push-ecr@v1.0.0
         with:
           repo: safe-keeper
           tag: ${{ github.ref }}
